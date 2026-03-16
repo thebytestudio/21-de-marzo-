@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 de Marzo | Mis Flores Amarillas Para Ti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap');
+
+        :root {
+            --gold: #ca8a04;
+            --yellow-bright: #facc15;
+            --cream: #fffdf2;
+            --dark-green: #166534;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Flores cayendo */
+        .rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, rgba(255, 253, 242, 1) 70%);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            color: var(--gold);
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .hero p { font-size: 1.2rem; color: #555; max-width: 500px; }
+
+        /* Sección Interactiva: El Jardín */
+        .garden-section {
+            padding: 100px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .flower-pot {
+            font-size: 5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .flower-pot:active { transform: scale(0.9); }
+
+        #growing-flower {
+            font-size: 0rem;
+            transition: font-size 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: block;
+        }
+
+        /* Sección Galería Elegante */
+        .moments { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transform: rotate(-2deg);
+            transition: 0.4s;
+        }
+
+        .card:nth-child(even) { transform: rotate(3deg); }
+        .card:hover { transform: rotate(0deg) translateY(-10px); }
+
+        .img-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #f3f3f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #ccc;
+            border: 1px solid #eee;
+        }
+
+        /* Carta de Amor Estilo Pergamino */
+        .letter-container {
+            padding: 100px 20px;
+            background: var(--cream);
+        }
+
+        .letter {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 50px 5px 50px 5px;
+            box-shadow: 20px 20px 0px var(--yellow-bright);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .letter h2 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--gold); }
+
+        /* Footer */
+        footer { padding: 50px; text-align: center; font-weight: bold; color: var(--gold); }
+
+        /* Animaciones */
+        .flower-anim {
+            position: fixed; top: -10%; animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rain" id="rain"></div>
+
+    <section class="hero">
+        <h1>21 de Marzo</h1>
+        <p>Dijiste que querías flores amarillas... <br> <strong>Aquí tienes un jardín entero que nunca se marchitará.</strong></p>
+        <div style="margin-top: 40px; font-size: 2rem;">🌻</div>
+    </section>
+
+    <section class="garden-section">
+        <h2>Toca la maceta para plantar nuestro amor</h2>
+        <div class="flower-pot" onclick="growFlower()">🪴</div>
+        <span id="growing-flower">🌻</span>
+        <p id="garden-msg" style="margin-top: 20px; font-weight: 500; opacity: 0; transition: 1s;">¡Mira cómo florece lo que siento por ti!</p>
+    </section>
+
+    <section class="moments">
+        <h2 style="text-align: center; font-family: 'Dancing Script'; font-size: 3.5rem; color: var(--gold);">Momentos de Luz</h2>
+        <div class="grid">
+            <div class="card"><div class="img-placeholder">FOTO 1</div><p style="margin-top: 10px; text-align: center;">Nuestra primera aventura</p></div>
+            <div class="card"><div class="img-placeholder">FOTO 2</div><p style="margin-top: 10px; text-align: center;">Esa risa que amo</p></div>
+            <div class="card"><div class="img-placeholder">FOTO 3</div><p style="margin-top: 10px; text-align: center;">Juntos siempre</p></div>
+        </div>
+    </section>
+
+    <section class="letter-container">
+        <div class="letter">
+            <h2>Para mi niña eterna...</h2>
+            <br>
+            <p>Hoy es 21 de marzo y todo el mundo habla de flores amarillas. Yo no quería simplemente darte un ramo que se seca en tres días. Quería darte algo que pudieras abrir cada vez que necesites recordar lo mucho que te amo.</p>
+            <p>Eres mi sol, mi primavera y la razón por la que siempre hay luz en mi vida. Gracias por aceptar caminar conmigo.</p>
+            <br>
+            <p style="font-size: 1.5rem; font-family: 'Dancing Script';">Con amor infinito, <br>Juan</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>🌻 ERES ÚNICA | 2026 🌻</p>
+    </footer>
+
+    <script>
+        // Lógica de lluvia de flores mejorada
+        const rainContainer = document.getElementById('rain');
+        function createFlower() {
+            const f = document.createElement('div');
+            f.className = 'flower-anim';
+            f.innerText = '🌻';
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            f.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            f.style.opacity = Math.random();
+            rainContainer.appendChild(f);
+            setTimeout(() => f.remove(), 8000);
+        }
+        setInterval(createFlower, 250);
+
+        // Lógica de crecimiento
+        function growFlower() {
+            const flower = document.getElementById('growing-flower');
+            const msg = document.getElementById('garden-msg');
+            flower.style.fontSize = '8rem';
+            msg.style.opacity = '1';
+        }
+    </script>
+</body>
+</html>
+
+
+
