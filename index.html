@@ -1,205 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21 de Marzo | Mis Flores Amarillas Para Ti</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21 de Marzo | Mis Flores Amarillas Para Ti</title>
 
-        :root {
-            --gold: #ca8a04;
-            --yellow-bright: #facc15;
-            --cream: #fffdf2;
-            --dark-green: #166534;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+<style>
+:root {
+    --gold: #ca8a04;
+    --yellow-bright: #facc15;
+    --cream: #fffdf2;
+}
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
-            color: #333;
-            overflow-x: hidden;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        /* Flores cayendo */
-        .rain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--cream);
+    overflow-x: hidden;
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, rgba(255, 253, 242, 1) 70%);
-            padding: 20px;
-        }
+/* Lluvia */
+.rain {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
-        .hero h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(3.5rem, 12vw, 7rem);
-            color: var(--gold);
-            margin-bottom: 10px;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-        }
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(250,204,21,0.2) 0%, rgba(255,253,242,1) 70%);
+    text-align: center;
+}
 
-        .hero p { font-size: 1.2rem; color: #555; max-width: 500px; }
+.hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 6rem;
+    color: var(--gold);
+}
 
-        /* Sección Interactiva: El Jardín */
-        .garden-section {
-            padding: 100px 20px;
-            background: white;
-            text-align: center;
-        }
+.hero p { color: #555; }
 
-        .flower-pot {
-            font-size: 5rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: inline-block;
-            margin: 20px 0;
-        }
+/* Jardín */
+.garden-section {
+    padding: 80px;
+    text-align: center;
+    background: white;
+}
 
-        .flower-pot:active { transform: scale(0.9); }
+.flower-pot {
+    font-size: 5rem;
+    cursor: pointer;
+}
 
-        #growing-flower {
-            font-size: 0rem;
-            transition: font-size 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: block;
-        }
+#growing-flower {
+    font-size: 0;
+    display: block;
+    transition: 0.5s;
+}
 
-        /* Sección Galería Elegante */
-        .moments { padding: 80px 20px; max-width: 1200px; margin: auto; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
+/* Galería */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+    padding: 50px;
+}
 
-        .card {
-            background: #fff;
-            padding: 15px;
-            border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transform: rotate(-2deg);
-            transition: 0.4s;
-        }
+.card {
+    background: white;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-        .card:nth-child(even) { transform: rotate(3deg); }
-        .card:hover { transform: rotate(0deg) translateY(-10px); }
+/* Carta */
+.letter-container {
+    padding: 80px;
+}
 
-        .img-placeholder {
-            width: 100%;
-            height: 300px;
-            background: #f3f3f3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #ccc;
-            border: 1px solid #eee;
-        }
+.letter {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+}
 
-        /* Carta de Amor Estilo Pergamino */
-        .letter-container {
-            padding: 100px 20px;
-            background: var(--cream);
-        }
+/* Animaciones */
+.flower-anim {
+    position: fixed;
+    top: -10%;
+    animation: fall linear forwards;
+}
 
-        .letter {
-            max-width: 700px;
-            margin: auto;
-            background: white;
-            padding: 60px 40px;
-            border-radius: 50px 5px 50px 5px;
-            box-shadow: 20px 20px 0px var(--yellow-bright);
-            line-height: 1.8;
-            position: relative;
-        }
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
 
-        .letter h2 { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--gold); }
+/* Scroll */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 1s;
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        /* Footer */
-        footer { padding: 50px; text-align: center; font-weight: bold; color: var(--gold); }
-
-        /* Animaciones */
-        .flower-anim {
-            position: fixed; top: -10%; animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
-    </style>
+/* Corazones */
+@keyframes floatUp {
+    to {
+        transform: translateY(-80px);
+        opacity: 0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="rain" id="rain"></div>
+<!-- Música -->
+<audio id="music" loop>
+<source src="TU-MUSICA.mp3" type="audio/mpeg">
+</audio>
 
-    <section class="hero">
-        <h1>21 de Marzo</h1>
-        <p>Dijiste que querías flores amarillas... <br> <strong>Aquí tienes un jardín entero que nunca se marchitará.</strong></p>
-        <div style="margin-top: 40px; font-size: 2rem;">🌻</div>
-    </section>
+<div class="rain" id="rain"></div>
 
-    <section class="garden-section">
-        <h2>Toca la maceta para plantar nuestro amor</h2>
-        <div class="flower-pot" onclick="growFlower()">🪴</div>
-        <span id="growing-flower">🌻</span>
-        <p id="garden-msg" style="margin-top: 20px; font-weight: 500; opacity: 0; transition: 1s;">¡Mira cómo florece lo que siento por ti!</p>
-    </section>
+<section class="hero">
+<h1>21 de Marzo</h1>
+<p>Dijiste que querías flores amarillas... 🌻</p>
+</section>
 
-    <section class="moments">
-        <h2 style="text-align: center; font-family: 'Dancing Script'; font-size: 3.5rem; color: var(--gold);">Momentos de Luz</h2>
-        <div class="grid">
-            <div class="card"><div class="img-placeholder">FOTO 1</div><p style="margin-top: 10px; text-align: center;">Nuestra primera aventura</p></div>
-            <div class="card"><div class="img-placeholder">FOTO 2</div><p style="margin-top: 10px; text-align: center;">Esa risa que amo</p></div>
-            <div class="card"><div class="img-placeholder">FOTO 3</div><p style="margin-top: 10px; text-align: center;">Juntos siempre</p></div>
-        </div>
-    </section>
+<section class="garden-section">
+<h2>Toca la maceta</h2>
+<div class="flower-pot" onclick="growFlower()">🪴</div>
+<span id="growing-flower">🌻</span>
+<p id="garden-msg" style="opacity:0;">¡Mira cómo crece mi amor por ti!</p>
+</section>
 
-    <section class="letter-container">
-        <div class="letter">
-            <h2>Para mi niña eterna...</h2>
-            <br>
-            <p>Hoy es 21 de marzo y todo el mundo habla de flores amarillas. Yo no quería simplemente darte un ramo que se seca en tres días. Quería darte algo que pudieras abrir cada vez que necesites recordar lo mucho que te amo.</p>
-            <p>Eres mi sol, mi primavera y la razón por la que siempre hay luz en mi vida. Gracias por aceptar caminar conmigo.</p>
-            <br>
-            <p style="font-size: 1.5rem; font-family: 'Dancing Script';">Con amor infinito, <br>Juan</p>
-        </div>
-    </section>
+<section class="grid">
+<div class="card hidden">
+<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg" style="width:100%; height:250px; object-fit:cover;">
+<p>Nuestro momento ❤️</p>
+</div>
 
-    <footer>
-        <p>🌻 ERES ÚNICA | 2026 🌻</p>
-    </footer>
+<div class="card hidden">
+<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg" style="width:100%; height:250px; object-fit:cover;">
+<p>Tu sonrisa ✨</p>
+</div>
 
-    <script>
-        // Lógica de lluvia de flores mejorada
-        const rainContainer = document.getElementById('rain');
-        function createFlower() {
-            const f = document.createElement('div');
-            f.className = 'flower-anim';
-            f.innerText = '🌻';
-            f.style.left = Math.random() * 100 + 'vw';
-            f.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            f.style.animationDuration = (Math.random() * 3 + 5) + 's';
-            f.style.opacity = Math.random();
-            rainContainer.appendChild(f);
-            setTimeout(() => f.remove(), 8000);
-        }
-        setInterval(createFlower, 250);
+<div class="card hidden">
+<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg" style="width:100%; height:250px; object-fit:cover;">
+<p>Siempre juntos 💛</p>
+</div>
+</section>
 
-        // Lógica de crecimiento
-        function growFlower() {
-            const flower = document.getElementById('growing-flower');
-            const msg = document.getElementById('garden-msg');
-            flower.style.fontSize = '8rem';
-            msg.style.opacity = '1';
-        }
-    </script>
+<section class="letter-container">
+<div class="letter hidden">
+<h2>Para Maylet 💛</h2>
+<p>
+Hoy no quería darte flores normales...  
+Quería darte algo que nunca se marchite.  
+Eres mi sol, mi paz y lo mejor que me ha pasado.  
+</p>
+<br>
+<p><strong>Con amor infinito, Juan</strong></p>
+</div>
+</section>
+
+<script>
+// Música
+document.body.addEventListener('click', () => {
+document.getElementById('music').play();
+}, { once: true });
+
+// Lluvia
+const rain = document.getElementById('rain');
+function createFlower() {
+let f = document.createElement('div');
+f.innerText = "🌻";
+f.className = "flower-anim";
+f.style.left = Math.random()*100+"vw";
+f.style.fontSize = (Math.random()*20+10)+"px";
+f.style.animationDuration = (Math.random()*3+4)+"s";
+rain.appendChild(f);
+setTimeout(()=>f.remove(),7000);
+}
+setInterval(createFlower,200);
+
+// Crecimiento
+let size = 0;
+function growFlower(){
+let flower = document.getElementById("growing-flower");
+let msg = document.getElementById("garden-msg");
+
+if(size < 8){
+size += 2;
+flower.style.fontSize = size + "rem";
+}
+
+if(size >= 8){
+msg.style.opacity = "1";
+}
+}
+
+// Corazones
+document.addEventListener('click', (e)=>{
+let heart = document.createElement('div');
+heart.innerText = "💛";
+heart.style.position="fixed";
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+heart.style.animation="floatUp 1s forwards";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1000);
+});
+
+// Scroll animación
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll('.hidden').forEach(el=>{
+observer.observe(el);
+});
+</script>
+
 </body>
 </html>
