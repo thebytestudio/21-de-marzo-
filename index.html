@@ -1,244 +1,481 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Camila 🌻</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Camila, Nuestra Primavera Eterna | 21 de Marzo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Dancing+Script:wght@600;700&family=Montserrat:wght@300;400;600&display=swap');
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        :root {
+            --gold-light: #fbe5aa;
+            --gold-main: #d4af37;
+            --gold-dark: #aa7c11;
+            --bg-dark: #1a0f05;
+            --paper: #fbf5e6;
+            --text-dark: #3a2205;
+            --text-light: #fef8eb;
+            --pink-soft: #ffb6c1;
+        }
 
-<style>
-:root{
---gold:#facc15;
---soft:#fffaf0;
---dark:#1f2937;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #3d230a 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
 
-body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#fffdf5,#fff7cc);
-overflow-x:hidden;
-color:var(--dark);
-}
+        /* --- Partículas de Luz de Fondo --- */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-/* FONDO BRILLO */
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle, rgba(250,204,21,0.2), transparent 60%);
-animation:moveBg 10s linear infinite;
-z-index:-1;
-}
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,223,100,0.8) 0%, rgba(255,223,100,0) 70%);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out alternate;
+        }
 
-@keyframes moveBg{
-0%{transform:translate(0,0);}
-100%{transform:translate(-25%,-25%);}
-}
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); opacity: 0.3; }
+            100% { transform: translateY(-30px) scale(1.5); opacity: 0.8; }
+        }
 
-/* HERO */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-}
+        /* --- Contenedor Principal --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:4rem;
-color:#ca8a04;
-}
+        /* --- Títulos --- */
+        .header-titles {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in;
+        }
 
-.hero p{
-margin-top:15px;
-font-size:1.2rem;
-opacity:0.8;
-}
+        .header-titles h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
 
-/* BOTON */
-.btn{
-margin-top:30px;
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:var(--gold);
-cursor:pointer;
-font-weight:600;
-transition:0.3s;
-}
+        .header-titles p {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: #d1bfae;
+        }
 
-.btn:hover{
-transform:scale(1.1);
-}
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            text-align: center;
+            background: linear-gradient(to right, var(--gold-light), #fff, var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
 
-/* SECCION */
-.section{
-padding:80px 20px;
-text-align:center;
-}
+        /* --- Zona Interactiva de la Maceta --- */
+        .interactive-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
 
-/* TARJETAS */
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-max-width:1000px;
-margin:auto;
-}
+        .pot-container {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-.card{
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(10px);
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-transition:0.4s;
-}
+        .pot-container:hover { transform: scale(1.02); }
 
-.card:hover{
-transform:translateY(-10px) scale(1.03);
-}
+        .pot-img {
+            width: 120px;
+            height: 100px;
+            background: linear-gradient(135deg, #a0522d, #5c2c06);
+            border-radius: 10px 10px 40px 40px;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        }
 
-.card img{
-width:100%;
-height:250px;
-object-fit:cover;
-}
+        .pot-img::after {
+            content: 'A & J';
+            font-family: 'Cinzel', serif;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
 
-.card p{
-padding:10px;
-}
+        .flower-wrapper {
+            position: absolute;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
 
-/* CARTA */
-.letter{
-max-width:600px;
-margin:auto;
-background:rgba(255,255,255,0.7);
-padding:40px;
-border-radius:25px;
-backdrop-filter:blur(10px);
-box-shadow:0 10px 40px rgba(0,0,0,0.1);
-line-height:1.8;
-}
+        .stem {
+            width: 6px;
+            height: 0;
+            background: linear-gradient(to top, #2e5c1e, #5ebd3e);
+            border-radius: 3px;
+            transition: height 1.5s ease-in-out;
+        }
 
-/* FLORES */
-.flower{
-position:fixed;
-top:-10%;
-animation:fall linear forwards;
-}
+        .sunflower {
+            font-size: 0;
+            transform: scale(0) rotate(-20deg);
+            transition: font-size 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 1.5s ease-out;
+            text-shadow: 0 0 20px rgba(255, 204, 51, 0.6);
+            margin-bottom: -10px;
+            z-index: 6;
+        }
 
-@keyframes fall{
-to{transform:translateY(110vh) rotate(360deg);}
-}
+        .growth-instruction {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
 
-/* CORAZONES */
-@keyframes floatUp{
-to{transform:translateY(-80px);opacity:0;}
-}
+        /* --- Barra de Progreso --- */
+        .progress-wrapper {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
 
-</style>
+        .progress-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: var(--gold-light);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--gold-dark), var(--gold-light));
+            border-radius: 10px;
+            transition: width 1.5s ease-in-out;
+            box-shadow: 0 0 10px var(--gold-main);
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #aaa;
+        }
+
+        .progress-labels span.active {
+            color: var(--gold-light);
+            text-shadow: 0 0 5px var(--gold-main);
+        }
+
+        /* --- Carta Estilo Pergamino --- */
+        .parchment-letter {
+            background: linear-gradient(135deg, var(--paper) 0%, #e8d5b5 100%);
+            color: var(--text-dark);
+            padding: 40px 30px;
+            border-radius: 5px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            margin-bottom: 60px;
+            display: none; /* Se muestra al final */
+        }
+
+        .parchment-letter.visible { display: block; animation: fadeIn 2s; }
+
+        .parchment-letter h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #5c2c06;
+        }
+
+        .parchment-letter p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* --- Timeline --- */
+        .timeline-section { width: 100%; display: none; margin-bottom: 60px; }
+        .timeline-section.visible { display: block; animation: fadeIn 2s; }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+            font-size: 0.9rem;
+        }
+        .timeline-item.left { left: 0; text-align: right; border-right: 1px solid var(--gold-main); }
+        .timeline-item.right { left: 50%; text-align: left; border-left: 1px solid var(--gold-main); }
+
+        /* --- BUZÓN DE LA PRIMAVERA --- */
+        .mailbox-section {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            border: 1px dashed var(--gold-main);
+            display: none;
+        }
+        .mailbox-section.visible { display: block; animation: fadeIn 2s; }
+
+        #mail-button {
+            background: linear-gradient(135deg, var(--gold-main), var(--gold-dark));
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: var(--bg-dark);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--gold-main);
+            transition: 0.3s;
+        }
+
+        #mail-button:hover { transform: scale(1.05); }
+
+        #message-display {
+            margin-top: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--pink-soft);
+            min-height: 50px;
+            transition: opacity 0.5s;
+        }
+
+        /* --- Control de Música --- */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0,0,0,0.6);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid var(--gold-main);
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        @media (max-width: 480px) {
+            .main-title { font-size: 1.6rem; }
+            .timeline-item { width: 100%; text-align: center !important; border: none !important; }
+            .timeline-item.right { left: 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<audio id="music" loop>
-<source src="TU-MUSICA.mp3">
-</audio>
+    <audio id="bg-music" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/05/Soft-Piano-Music.mp3" type="audio/mpeg">
+    </audio>
 
-<section class="hero">
-<h1>Para Camila 🌻</h1>
-<p>No quería darte flores que se marchitan…  
-Quería darte algo eterno 💛</p>
-<button class="btn" onclick="start()">Toca aquí</button>
-</section>
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
 
-<section class="section">
-<h2>Momentos contigo ✨</h2>
+    <div id="particles"></div>
 
-<div class="cards">
-<div class="card">
-<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg">
-<p>Tu sonrisa ilumina todo</p>
-</div>
+    <div class="container">
+        
+        <div class="header-titles">
+            <h2>Nuestra Primavera</h2>
+            <p>21 DE MARZO | EL JARDÍN DE NUESTRO AMOR</p>
+        </div>
 
-<div class="card">
-<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg">
-<p>Cada momento contigo vale oro</p>
-</div>
+        <h1 class="main-title">Regálame Un Toque<br>Para Ver Nuestro<br>Amor Florecer</h1>
 
-<div class="card">
-<img src="https://i.postimg.cc/XYnK4tQp/IMG-20260310-WA0003.jpg">
-<p>Eres mi lugar favorito</p>
-</div>
-</div>
-</section>
+        <div class="interactive-zone">
+            <div class="pot-container" id="pot" onclick="growFlower()">
+                <div class="flower-wrapper">
+                    <div class="sunflower" id="flower">🌻</div>
+                    <div class="stem" id="stem"></div>
+                </div>
+                <div class="pot-img"></div>
+            </div>
+            <p class="growth-instruction" id="instruction">Paso 1: Planta nuestras risas</p>
+        </div>
 
-<section class="section">
-<div class="letter">
-<h2>Camila 💛</h2>
-<p>
-Hoy todos regalan flores amarillas…  
-pero yo quería darte algo diferente.
+        <div class="progress-wrapper">
+            <h3 class="progress-title">Diario de Nuestro Camino</h3>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+            <div class="progress-labels">
+                <span id="l-1" class="active">SEMILLA</span>
+                <span id="l-2">BROTE</span>
+                <span id="l-3">CAPULLO</span>
+                <span id="l-4">GIRASOL</span>
+            </div>
+        </div>
 
-Algo que no se marchite,  
-algo que puedas abrir cuando quieras…  
-y recuerdes lo importante que eres para mí.
+        <div class="parchment-letter" id="love-letter">
+            <h3>Para Camila, Mi Amor Eterno</h3>
+            <p>Aunque los kilómetros nos separen hoy, 21 de marzo, te envío estas flores amarillas como promesa de un amor que trasciende la distancia. No quería darte un ramo que se marchitara, sino este jardín digital que florecerá cada vez que me necesites.</p>
+            <p>Eres mi primavera constante, mi sol y mi alegría. Te amo más de lo que las palabras pueden decir.</p>
+            <div style="text-align: right; font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 20px;">
+                Feliz 21 de Marzo, Camila,<br>Juan
+            </div>
+        </div>
 
-No eres solo alguien en mi vida…  
-eres la razón por la que todo tiene más sentido.
+        <div class="timeline-section" id="timeline-sec">
+            <h3 style="text-align: center; font-family: 'Cinzel'; color: var(--gold-light); margin-bottom: 30px;">Mapa de Nuestra Primavera</h3>
+            <div class="timeline-item left">✨ Mismo cielo, mismas estrellas</div>
+            <div class="timeline-item right">⌛ Contando los días para vernos</div>
+            <div class="timeline-item left">🌌 Nuestra conexión sin barreras</div>
+        </div>
 
-Gracias por existir,  
-gracias por ser tú… 🌻
-</p>
+        <div class="mailbox-section" id="mailbox">
+            <h3 style="font-family: 'Cinzel'; font-size: 0.9rem; color: var(--gold-light); margin-bottom: 20px;">Buzón de la Primavera ✉️</h3>
+            <button id="mail-button" onclick="revealMessage()">Abrir un mensaje nuevo</button>
+            <div id="message-display"></div>
+        </div>
 
-<br>
-<p><strong>Con amor, Juan</strong></p>
-</div>
-</section>
+    </div>
 
-<script>
+    <script>
+        // Partículas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = particle.style.height = `${Math.random() * 5 + 2}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
 
-// iniciar experiencia
-function start(){
-document.getElementById("music").play();
-createRain();
-}
+        let stage = 0;
+        const audio = document.getElementById('bg-music');
 
-// lluvia flores
-function createRain(){
-setInterval(()=>{
-let f=document.createElement("div");
-f.innerText="🌻";
-f.className="flower";
-f.style.left=Math.random()*100+"vw";
-f.style.fontSize=(Math.random()*20+10)+"px";
-f.style.animationDuration=(Math.random()*3+4)+"s";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),7000);
-},200);
-}
+        function growFlower() {
+            if (stage === 0) audio.play(); // Inicia música al interactuar
+            if (stage >= 3) return;
+            stage++;
 
-// corazones click
-document.addEventListener("click",(e)=>{
-let h=document.createElement("div");
-h.innerText="💛";
-h.style.position="fixed";
-h.style.left=e.clientX+"px";
-h.style.top=e.clientY+"px";
-h.style.animation="floatUp 1s forwards";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),1000);
-});
+            const stem = document.getElementById('stem');
+            const flower = document.getElementById('flower');
+            const progressBar = document.getElementById('progress-bar');
+            const instruction = document.getElementById('instruction');
 
-</script>
+            progressBar.style.width = `${(stage / 3) * 100}%`;
+            document.getElementById(`l-${stage + 1}`).classList.add('active');
 
+            if (stage === 1) {
+                stem.style.height = '60px';
+                instruction.innerText = "Paso 2: Riega con confianza";
+            } else if (stage === 2) {
+                stem.style.height = '120px';
+                flower.style.fontSize = '2rem';
+                flower.style.transform = 'scale(0.5) rotate(-10deg)';
+                instruction.innerText = "Paso 3: Un toque de luz";
+            } else if (stage === 3) {
+                stem.style.height = '160px';
+                flower.style.fontSize = '5rem';
+                flower.style.transform = 'scale(1) rotate(0deg)';
+                instruction.innerText = "Nuestro amor ha florecido para Camila 🌻";
+                
+                setTimeout(() => {
+                    document.getElementById('love-letter').classList.add('visible');
+                    document.getElementById('timeline-sec').classList.add('visible');
+                    document.getElementById('mailbox').classList.add('visible');
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }, 1500);
+            }
+        }
+
+        const messages = [
+            "Eres el pensamiento más bonito de mi día.",
+            "La distancia solo hace que nuestro reencuentro sea más dulce.",
+            "Cada pétalo de este girasol es un 'te quiero'.",
+            "Mi lugar favorito es estar en las llamdas unicas.",
+            "Pronto cambiaremos la pantalla por abrazos reales.",
+            "Gracias por ser mi primavera en cualquier estación.",
+            "Eres mi sol en los días nublados.",
+            "Nuestra historia es mi favorita."
+        ];
+
+        function revealMessage() {
+            const display = document.getElementById('message-display');
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerText = messages[Math.floor(Math.random() * messages.length)];
+                display.style.opacity = 1;
+            }, 300);
+        }
+
+        function toggleMusic() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+        }
+    </script>
 </body>
 </html>
